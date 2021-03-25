@@ -1,0 +1,30 @@
+language: minimal
+
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_IMAGE='kuisisle3sw/ocaml-docker:latest'
+    - DOCKER_NAME='ocaml_docker'
+
+branches:
+  only:
+    - master
+
+stages:
+  - build-test
+
+before_install:
+  - docker pull $DOCKER_IMAGE
+
+before_script:
+  - docker run --user='root' -v $PWD:$PWD:Z -w $PWD --name $DOCKER_NAME -d -it $DOCKER_IMAGE
+
+  
+jobs:
+  include:
+    - stage: build-test
+      script:
+        - docker exec -it $DOCKER_NAME /bin/bash -l -c 'eval $(opam env) && dune build'
+        - docker exec -it $DOCKER_NAME /bin/bash -l -c 'eval $(opam env) && dune runtest'

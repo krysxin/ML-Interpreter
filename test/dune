@@ -1,0 +1,49 @@
+(menhir
+  (modules tyParser)
+)
+(ocamllex
+  (modules tyLexer)
+)
+(tests
+  (names
+    ;ex3_2_1 ;ok
+    ;ex3_2_2 ;ok
+    ;ex3_2_3 ;ok
+    ;ex3_2_4 ;ok
+    ;ex3_3_1 ;ok
+    ;ex3_3_2
+    ;ex3_3_3
+    ;ex3_3_4 ;ok
+    ;ex3_4_1 ;ok
+    ;ex3_4_2 ;ok
+    ;ex3_4_3 ;ok
+    ;ex3_4_4 ;ok
+    ;ex3_4_5  ;ok
+    ;ex3_4_6 ;ok
+    ;ex3_5_1  ;ok
+    ;ex3_5_2
+    ;ex3_6_1
+    ;ex3_6_2
+    ;ex3_6_3
+    ;ex3_6_4
+    ;ex3_6_5
+    ;ex3_6_6
+    ;ex3_6_7
+    ex4_2_1
+    ex4_3_1
+    ex4_3_2
+    ex4_3_3
+    ex4_3_4
+    ex4_3_5
+    ex4_3_6
+    ;ex4_3_7
+    ex4_4_1
+    ex4_4_2
+    ;ex4_4_3
+    ex4_4_4
+  )
+  (libraries
+    oUnit
+    miniml
+  )
+)
