@@ -75,9 +75,9 @@ You may need to run the command `eval $(opam env)` before running the above comm
 
 ### Error Messages
 
-- Invalid expression
-  Any expression: that is not defined in [Expression](#expression) will cause an error.
-- Type error
-  Any expression: that is inferenced by [Type Inference](#type-inference) with an invalid type will cause an type error.
+- Invalid expression:  
+  Any expression that is not defined in [Expression](#expression) will cause an error.
+- Type error:  
+  Any expression that is inferenced by [Type Inference](#type-inference) with an invalid type will cause an type error.
 
 After showing error message, it will be automatically back to the prompt front so that users won't need to reinvoke the interpreter.
