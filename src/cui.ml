@@ -1,6 +1,6 @@
 open Eval
-open Syntax (*追加*)
-open Typing (*追加*)
+open Syntax 
+open Typing 
 
 let rec read_eval_print env tyenv = 
   print_string "# ";
@@ -37,7 +37,7 @@ let initial_env =
       (Environment.extend "v" (IntV 5)
         (Environment.extend "x" (IntV 10) Environment.empty)))))
 
-let initial_tyenv = (*4.2.1*) (*4.4.1*)
+let initial_tyenv = 
   Environment.extend "i" (tysc_of_ty TyInt)
   (Environment.extend "ii" (tysc_of_ty TyInt)
     (Environment.extend "iii" (tysc_of_ty TyInt)

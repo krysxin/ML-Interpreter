@@ -37,7 +37,6 @@ Expr :
 
 
 LetExpr :
-   //LET x=ID EQ e1=Expr IN e2=Expr { LetExp (x,e1,e2)} 
   LET e_ls=AndLetExpr IN e2=Expr { LetExp (e_ls, e2) } 
   
 
@@ -46,7 +45,6 @@ AndLetExpr :
   | x=ID EQ e1=Expr ANDLET e2=AndLetExpr { (x,e1) :: e2 } 
   | x=ID args=MultiArgs EQ e=Expr { [(x, argstoFun args e )] } 
   | x=ID args=MultiArgs EQ e=Expr ANDLET e2=AndLetExpr { (x, argstoFun args e ) :: e2 } 
-  // | x=ID EQ e1=Expr LET e2=AndLetExpr { (x,e1) :: e2}
   
 
 
@@ -55,7 +53,6 @@ MultiArgs :
 | x=ID e=MultiArgs { x :: e }
 
 FunExpr : 
-  //  FUN x=ID RARROW e=Expr { FunExp (x,e)} 
    FUN e=FunMultiAgrsExpr { e } 
   
 

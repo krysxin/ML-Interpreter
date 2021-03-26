@@ -79,14 +79,14 @@ let rec pp_ty ty = print_string (string_of_ty ty)
 
 
 
-let var_of_binop  = function (*Ex4.4.4 BinOpのstringを得る*)
+let var_of_binop  = function 
   Plus -> Var "+"
 | Mult -> Var "*"
 | Lt -> Var "<"
 | And -> Var "&&"
 | Or -> Var "||"
 
-let id_of_binop = function (*Ex4.4.4*)
+let id_of_binop = function 
   Var "+" -> "+"
 | Var "*" -> "*"
 | Var "<" -> "<"
@@ -94,8 +94,8 @@ let id_of_binop = function (*Ex4.4.4*)
 | Var "||" -> "||"
 | _ -> "Not Implemented!"
 
-let fresh_tyvar = (*4.3.2*)
-  let counter = ref 0 in (* 次に返すべき tyvar 型の値を参照で持っておいて， *)
+let fresh_tyvar = 
+  let counter = ref 0 in (* 次に返すべき tyvar 型の値を参照で持ってく *)
   let body () =
     let v = !counter in
       counter := v + 1; v (* 呼び出されたら参照をインクリメントして，古い counter の参照先の値を返す *)

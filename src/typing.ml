@@ -74,7 +74,7 @@ let rec append l1 l2 = match l1 with
   [] -> l2
   | x::rest -> x :: append rest l2;;
 
-let ty_prim op ty1 ty2 = match op with (*4.2.1*)
+let ty_prim op ty1 ty2 = match op with 
   Plus -> ([(ty1, TyInt); (ty2, TyInt)], TyInt)
   | Mult -> ([(ty1, TyInt); (ty2, TyInt)], TyInt)
   | Lt -> ([(ty1, TyInt); (ty2, TyInt)], TyBool)

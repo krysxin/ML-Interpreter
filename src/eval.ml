@@ -5,7 +5,7 @@ type exval =
   | BoolV of bool
   | ProcV of id * exp * dnval Environment.t ref  
   | DProcV of id * exp  
-  (* | ConsV of exval * exval (*3.6.3*)
+  (* | ConsV of exval * exval 
   | NilV *)
 and dnval = exval
 
@@ -17,8 +17,8 @@ let err s = raise (Error s)
 let rec string_of_exval = function
     IntV i -> string_of_int i
   | BoolV b -> string_of_bool b
-  | ProcV (_,_,_) -> "<fun>" (*3.4.1 関数定義を<fun>と表示する*)
-  | DProcV(_,_) -> "<dfun>" (*3.4.5*)
+  | ProcV (_,_,_) -> "<fun>" 
+  | DProcV(_,_) -> "<dfun>" 
 
 let pp_val v = print_string (string_of_exval v)
 
@@ -67,12 +67,6 @@ let rec eval_exp env = function
        BoolV true -> eval_exp env exp2
      | BoolV false -> eval_exp env exp3
      | _ -> err ("Test expression must be boolean: if"))
-
-  (*| LetExp (id, exp1, exp2) ->  
-    let value = eval_exp env exp1 in  (* 現在の環境で exp1 を評価 *)
-    eval_exp (Environment.extend id value env) exp2 (* exp1 の評価結果を id の値として環境に追加して exp2 を評価 *) *)
-
-  
   | LetExp (ls,restexp) ->
     if isBoundSeveralTimes ls then boundError();
     let id_vals = List.map (fun (id, e) -> (id, eval_exp env e)) ls in
@@ -105,14 +99,11 @@ let eval_decl env = function
     Exp e -> let v = eval_exp env e in (["-", v], env)
   (* | Decl (id, e) ->
     let v = eval_exp env e in (id, Environment.extend id v env, v) *)
-  
-  (*3.3.4*)
   | Decl e_ls -> 
        if isBoundSeveralTimes e_ls then boundError();
        let v_ls = List.map (fun (id, e) -> (id, eval_exp env e)) e_ls in
        let newenv = List.fold_left (fun e (id, v) -> Environment.extend id v e) env v_ls in
          (v_ls, newenv)
-  (*3.5.1*)
   | RecDecl (id, para, e) ->
     let dummyenv = ref Environment.empty in
     let v = (ProcV (para, e, dummyenv)) in
